@@ -1,0 +1,17 @@
+﻿@model IEnumerable<RaiseTicket.Models.ProjectTicket>
+
+@{
+    ViewBag.Title = "DrawChart";
+   // Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DrawChart</h2>
+
+@{
+    var chart = new Chart(width: 500, height: 500, theme: ChartTheme.Blue)
+    .AddTitle("Projects with a count of associated tickets")
+    .AddSeries("Default", chartType: "column",
+        xValue: Model, xField: "ProjectName",
+        yValues: Model, yFields: "TicketCount")
+    .Write();
+}

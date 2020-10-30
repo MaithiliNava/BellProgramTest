@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h4>Select Language</h4>
+<ul>
+    <li>@Html.ActionLink("English", "change", "Home", new { Languageabbrevation = "en" }, null)</li>
+    <li>@Html.ActionLink("French", "change", "Home", new { Languageabbrevation = "fr" }, null)</li>
+</ul>

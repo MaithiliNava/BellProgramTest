@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3c391732929248f4b934d41ae12423e2" Name="Diagram1">
+        <EntityTypeShape EntityType="BellFieldServiceModel.Department" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellFieldServiceModel.Employee" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellFieldServiceModel.Project" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellFieldServiceModel.Ticket" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="BellFieldServiceModel.FK_Employee_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="BellFieldServiceModel.FK_Ticket_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="BellFieldServiceModel.FK_Ticket_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="BellFieldServiceModel.FK_Ticket_Projects" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

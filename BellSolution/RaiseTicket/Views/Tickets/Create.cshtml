@@ -1,0 +1,82 @@
+﻿@model RaiseTicket.Models.Ticket
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>@RaiseTicket.Resources.CreateTicket.TitleCreateTicket</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProjectId, RaiseTicket.Resources.CreateTicket.Project, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ProjectId", (SelectList)ViewBag.ProjectId, "Please select", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProjectId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DeptId, RaiseTicket.Resources.CreateTicket.Department, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("DeptId", (SelectList)ViewBag.DeptId, "Please select", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DeptId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmpIoyeeId, RaiseTicket.Resources.CreateTicket.Employee, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("EmpIoyeeId", (SelectList)ViewBag.EmpIoyeeId, "Please select", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EmpIoyeeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, RaiseTicket.Resources.CreateTicket.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@RaiseTicket.Resources.CreateTicket.Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink(RaiseTicket.Resources.CreateTicket.BackToList, "GridView")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+   
+ <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#DeptId').change(function () {
+                $('#EmpIoyeeId option').remove();
+                $('#EmpIoyeeId').append('<option value="">' + 'Please selct' + '</option>');
+                $.getJSON('/Tickets/GetEmployees', { DeparmentId: $('#DeptId').val() }, function (data) {
+                    $.each(data, function () {
+                        $('#EmpIoyeeId').append('<option value=' +
+                            this.EmployeeId + '>' + this.EmpName + '</option>');
+                    });
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    alert('Error on getting employees!');
+                });
+            });
+        });
+    </script>
